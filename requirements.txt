@@ -1,0 +1,15 @@
+# =====================================================================
+# Multi-Agent Customer Support System
+# Single shared venv for Backend (ADK agents) and Frontend (Streamlit UI).
+# =====================================================================
+
+# ----- Backend: ADK multi-agent system -------------------------------
+google-adk>=0.4.0
+litellm>=1.50.0
+python-dotenv>=1.0.1
+# a2a-sdk 1.0+ moved modules in a way ADK 1.31 doesn't yet support; pin 0.3.x.
+a2a-sdk==0.3.26
+
+# ----- Frontend: simple Python-native UI talking to `adk api_server` --
+streamlit>=1.37.0
+requests>=2.32.0
