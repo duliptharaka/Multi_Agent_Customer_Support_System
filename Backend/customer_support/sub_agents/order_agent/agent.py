@@ -29,7 +29,7 @@ You handle anything about **orders**, **shipping**, **tracking**,
 Tools
 -----
 You have access to Supabase via MCP. The relevant tables are:
-    - customers(id, full_name, email, phone, loyalty_tier, ...)
+    - customers(id, full_name, email, phone, loyalty_tier, city, ...)
     - orders(id, customer_id, product_name, quantity, unit_price,
              total_amount, status, order_date, tracking_number)
 

@@ -258,7 +258,7 @@ python -m returns_service.server                  # http://127.0.0.1:8001
 
 # Terminal 2 — ADK HTTP API (keep running)
 cd Backend
-adk api_server                                    # http://127.0.0.1:8000
+adk api_server --allow_origins http://localhost:5173 --allow_origins http://127.0.0.1:5173
 
 # Terminal 3 — React dev server
 cd Frontend
@@ -329,7 +329,8 @@ adk run customer_support                          # terminal chat
 | Symptom | Likely cause | Fix |
 |---------|--------------|-----|
 | **Connection refused from `returns_agent`** | A2A service not running | Start `python -m returns_service.server` in Terminal 1. |
-| **Frontend stuck on `no session`** | `adk api_server` not running | Start it in Terminal 2 on port 8000. |
+| **`403 Forbidden` on `POST /apps/.../sessions/...`** | ADK's CORS allow-list is empty | Restart with `adk api_server --allow_origins http://localhost:5173 --allow_origins http://127.0.0.1:5173`. |
+| **Frontend stuck on `no session`** | `adk api_server` not running or not allowing the Vite origin | See the 403 row above; also verify it's on port 8000. |
 | **`Already returned`** on a return request | Order was already returned in a prior test | In Supabase, `UPDATE orders SET status = 'delivered' WHERE id = <n>;` to re-arm that order. |
 | **`npx` hangs on first MCP call** | First-run download of `@supabase/mcp-server-supabase` | Wait (~20 MB) or pre-cache: `npx -y @supabase/mcp-server-supabase@latest --help`. |
 | **`ModuleNotFoundError: a2a.server.apps`** | `a2a-sdk` 1.0.x installed | Pin `a2a-sdk==0.3.26` (already in `requirements.txt`). |
